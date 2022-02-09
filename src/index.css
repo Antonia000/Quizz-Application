@@ -1,13 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Karla:wght@200;300;400;500;600&family=Montserrat:wght@200&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Karla,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image:url('/public/img/home.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.home{
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
+
+.button{
+  background-color: #4D5B9E;
+  padding: 10px 35px;
+  border:1px solid #4D5B9E;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor:pointer;
+  color:#fff;
+  margin:15px 20px;
+  font-family: Karla;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  align-self: center;
+}
+
+.button:hover{
+  background-color: #485590;
+}
+
+.questions{
+  color:hsl(231, 42%, 28%);
+  padding:5px 50px;
+}
+.questions h3{
+  font-size:20px;
+}
+.questions .res{
+   padding-bottom:15px;
+   display:flex;
+}
+.questions .res input{
+  font-size:18px;
+  border:1px solid #293264;
+  border-radius:15px;
+  padding:4px 12px;
+  margin:3px;
+  cursor:pointer;
+  background-color: #fff;
+  color:#293264;
+}
+.questions .res input:hover{
+  background-color: #D6DBF5;
+  border:1px solid #D6DBF5;
+}
+.questions .score-out-of-one{
+  display:flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-bottom :1px solid #DBDEF0;
+}
+.score{
+  font-size:25px;
+  color:#293264;
+  font-weight: 800;
+  margin:20px 40px 20px 70px;
+}
+
+
+.finish{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
