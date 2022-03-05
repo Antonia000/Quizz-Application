@@ -1,49 +1,60 @@
 import React from 'react'
-import '../index.css'
 import Answer from './Answer'
 import { nanoid } from 'nanoid'
 import {decode} from 'html-entities';
-import Score from "./Score"
+import '../index.css'
 
 export default function Question(props) {
     const rightAnswer=props.answer;
     const badAnswers=props.badAnswers;
-    const[held,setIsHeld]=React.useState()
-    const [point,setPoint]=React.useState(0)
+    const[answers,setAnswers]=React.useState()
     const [allAnswers,setAllAnswers]=React.useState(badAnswers);
-    const [points,setPoints]=React.useState(props.points);
+
+    const [done,setDone]=React.useState(false);
 
     React.useEffect(() => {
       setAllAnswers(prevAnswers =>[
         ...prevAnswers,
-           rightAnswer
+           rightAnswer    
       ])
+      setDone(true) 
     },[])
-     
-    function handleClick(){
-      setIsHeld(true)
+    React.useEffect(() => {
+      setAnswers(()=>{
+        const all=allAnswers.map(ans => {
+                return{
+                  id:nanoid(),
+                  value:ans,
+                  rightAnswer:rightAnswer,
+                  isHeld:false
+                }})
+                return all
+          })
+    },[done])
 
-    }
-    const answers=allAnswers.map(ans => {
+    function handleClick(id){ 
+      setAnswers(oldAnswers => oldAnswers.map(ans => {
+          return ans.id === id ? {...ans, isHeld: !ans.isHeld} :  ans
+        }))}
+
+      const displayedAnswers= answers ? answers.map(ans => {
         return(
-            <Answer 
-            key={nanoid()}
-            value={ans} 
-            rightAnswer={rightAnswer} 
-            isHeld={held}
-            handleClick={handleClick}
-            point={point}
-            points={points}
-           />
-        )
-        }) 
-  return (
+          <Answer key={nanoid()}
+                  id={ans.id}
+                  value={ans.value}
+                  rightAnswer={ans.rightAnswer} 
+                  isHeld={ans.isHeld}
+                  handleClick={handleClick}
+                  point={ans.point}
+                  
+          />
+          )}) : ""
+
+  return(
     <div className="questions">
         <h3>{decode(props.question)}</h3>  
-        <div className="score-out-of-one">
         <div className="res" onClick={props.handleChange}>
-          {answers}
-        </div>
+           {displayedAnswers}
         </div>
     </div>
   );

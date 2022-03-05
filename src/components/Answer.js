@@ -4,25 +4,13 @@ import {decode} from 'html-entities';
 
 export default function Answer(props) {
 
-    const styleForTrue={
-        backgroundColor:'#94D7A2',
-        border:'1px solid #94D7A2'
-    }
-
-    const styleForFalse={
-      backgroundColor:'#F8BCBC',
-      border:'1px solid #F8BCBC',
-      color:'#293264'
-    }
+  const style={
+    backgroundColor: props.isHeld ? (props.value===props.rightAnswer ? '#94D7A2' : "#F8BCBC" ) : '',
+    border: props.isHeld ? (props.value===props.rightAnswer ? '1px solid #94D7A2' : '1px solid #F8BCBC' ) : '1px solid #4D5B9E' 
+  }
   return (
     <>
-    {
-    (props.isHeld&&props.rightAnswer===props.value)  ? 
-    <input type="submit" value={decode(props.value)} onClick={props.handleClick} style={styleForTrue} points={props.points}></input>
-    : (props.isHeld ? <input type="submit" value={decode(props.value)} onClick={props.handleClick} style={styleForFalse}></input> 
-    :<input type="submit" value={decode(props.value)} onClick={props.handleClick} ></input>)
-    }
+   {<input type="submit" value={decode(props.value)} onClick={()=>props.handleClick(props.id)} style={style}></input>}
     </>
-
   );
 }

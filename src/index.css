@@ -11,9 +11,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
 }
-
 .home{
   left: 50%;
   position: absolute;
@@ -21,12 +19,14 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
+.home p{
+  margin-bottom:35px;
+}
 .button{
   background-color: #4D5B9E;
   padding: 10px 35px;
   border:1px solid #4D5B9E;
-  border-radius: 15px;
+  border-radius: 40px;
   font-size: 16px;
   cursor:pointer;
   color:#fff;
@@ -35,16 +35,15 @@ body {
   font-weight: 700;
   text-decoration: none;
   text-align: center;
-  align-self: center;
 }
-
 .button:hover{
   background-color: #485590;
 }
-
 .questions{
   color:hsl(231, 42%, 28%);
   padding:5px 50px;
+  border-bottom:1px solid #DBDEF0;
+  margin:0px 50px;
 }
 .questions h3{
   font-size:20px;
@@ -53,9 +52,9 @@ body {
    padding-bottom:15px;
    display:flex;
 }
-.questions .res input{
+.res input{
   font-size:18px;
-  border:1px solid #293264;
+  border:1px solid #DBDEF0;
   border-radius:15px;
   padding:4px 12px;
   margin:3px;
@@ -63,15 +62,9 @@ body {
   background-color: #fff;
   color:#293264;
 }
-.questions .res input:hover{
+.res input:hover{
   background-color: #D6DBF5;
   border:1px solid #D6DBF5;
-}
-.questions .score-out-of-one{
-  display:flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  border-bottom :1px solid #DBDEF0;
 }
 .score{
   font-size:25px;
@@ -79,11 +72,10 @@ body {
   font-weight: 800;
   margin:20px 40px 20px 70px;
 }
-
-
 .finish{
-  display: flex;
-  justify-content: flex-start;
+  display:flex;
   flex-direction: row;
+  justify-content: start;
+  margin-left:100px;
 }
 

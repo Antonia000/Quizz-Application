@@ -7,33 +7,38 @@ import Score from "./Score"
 
 export default function Quiz() {
     const [questions, setQuestions]=React.useState([]);
-    const [total, setTotal]=React.useState([]);
-    let Total=[];
+    let Total=[]  
+    let score=0;
+
      React.useEffect(() => {fetch("https://opentdb.com/api.php?amount=10&category=22&difficulty=medium")
      .then((res) => res.json())
      .then((json) => {
          setQuestions(json.results)
      })},[])
 
-     function makeTotal(){ 
-      let score=0;
-      Total.map(elem=>{
-         elem===1 ? (score=score+1) : (score=score+0)
-      })
-      setTotal(score)
-    } 
     function handleChange(total,answer){ 
+      score=0;
       if(total.target.value === answer){
-         Total.push(1);
-         console.log(Total.length)        
+         Total.push(1);       
       }
      else{    
         Total.push(0);
-        console.log(Total.length)
-      }
-         if(Total.length === 10){makeTotal()}  
+      }     
+      Total.map(elem=>{
+         return elem===1 ? (score=score+1) : (score=score+0)
+      })
     }
-
+    function handleClick(){
+      if(Total.length === 10){
+        return score
+        }
+        if(Total.length > 10){
+          return "choose only one answer"
+        }
+        else{
+          return "uncomplete"
+        }
+    }
     const allQuestions=questions.map( question => {
        return(
          <div>
@@ -41,19 +46,20 @@ export default function Quiz() {
                      question={question.question}
                      answer={question.correct_answer}
                      badAnswers={question.incorrect_answers} 
-                     handleChange={(obj,answer) => handleChange(obj,question.correct_answer)} 
+                     handleChange={(obj) => handleChange(obj,question.correct_answer)} 
                      points={0}   
                      />
-           </div>
+         </div>
        )
      })  
+
   return (
     <div className="quiz">
       {allQuestions}
-      <div className="finish">
-        <Score total={total} />
-      <Link to="/home" className="button">Play again</Link>
-      </div>
+        <div className="finish">
+          <Score score={score} handleClick={handleClick}/>
+          <Link to="/home" className="button">Play again</Link>
+        </div>
     </div>
   );
 }
