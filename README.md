@@ -1,4 +1,6 @@
-# Quizz-Application
+# Quizz Application
+
+Answer all 10 geography questions (medium level) and press "Score" for the final result.
 
 Visit project page : [Quizz App](https://antonia000.github.io/Quizz-Application/)
 
